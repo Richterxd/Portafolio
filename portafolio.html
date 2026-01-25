@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Editor | Mi Nombre</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0b0e14; color: #e2e8f0; }
+        .neon-border { border: 2px solid #00f2ff; box-shadow: 0 0 10px #00f2ff; }
+    </style>
+</head>
+<body class="font-sans">
+
+    <header class="p-8 text-center">
+        <h1 class="text-5xl font-bold text-cyan-400 mb-2">MI PORTAFOLIO</h1>
+        <p class="text-xl text-gray-400">Video Editor & Thumbnail Designer</p>
+    </header>
+
+    <section class="max-w-4xl mx-auto p-4">
+        <h2 class="text-2xl font-semibold mb-6 border-b border-cyan-900 pb-2">Mis Ediciones</h2>
+        <div class="aspect-video mb-8 neon-border">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_AQUI" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto p-4">
+        <h2 class="text-2xl font-semibold mb-6 border-b border-cyan-900 pb-2">Miniaturas</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <img src="https://via.placeholder.com/600x400" alt="Miniatura 1" class="rounded shadow-lg hover:scale-105 transition">
+            <img src="https://via.placeholder.com/600x400" alt="Miniatura 2" class="rounded shadow-lg hover:scale-105 transition">
+        </div>
+    </section>
+
+    <footer class="text-center p-12">
+        <div class="flex justify-center space-x-6">
+            <a href="https://twitter.com/TU_USUARIO" class="bg-blue-600 px-6 py-2 rounded-full font-bold hover:bg-blue-500">Twitter / X</a>
+            <a href="https://discord.com" class="bg-indigo-600 px-6 py-2 rounded-full font-bold hover:bg-indigo-500">Discord</a>
+        </div>
+    </footer>
+
+</body>
+</html>
