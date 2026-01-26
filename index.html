@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTAFOLIO | RICHTER</title>
+    
+    <meta name="description" content="Editor de Video y Artista Visual. Estilo Edgerunner.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RICHTER | PORTAFOLIO">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/000/ccff00?text=RICHTER">
+
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,33 +17,71 @@
             theme: {
                 extend: {
                     colors: {
-                        'becca-pink': '#ff0055', /* Rosa */
-                        'becca-green': '#ccff00', /* Verde Ácido */
+                        'becca-pink': '#ff0055', /* El rosa de los tatuajes/armas */
+                        'becca-green': '#ccff00', /* El verde del pelo */
+                        'becca-yellow': '#fcee0a', /* El amarillo del fondo del anime */
                         'cyber-black': '#050505',
-                        'cyber-gray': '#0a0a0a',
                     },
                     fontFamily: {
                         'cyber': ['Rajdhani', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
+        /* === FONDO "TRIGGER STYLE" (REBECCA MODE) === */
         body {
             background-color: #050505;
-            /* DE VUELTA: El fondo de cuadrícula (Grid) */
-            background-image: 
-                linear-gradient(rgba(204, 255, 0, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(204, 255, 0, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
             color: #e2e8f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* CAPA 1: LAS LUCES DEL ANIME (Rosa, Verde, Amarillo) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 85, 0.15) 0%, transparent 50%), /* Rosa (Armas) */
+                radial-gradient(circle at 90% 10%, rgba(204, 255, 0, 0.15) 0%, transparent 50%), /* Verde (Pelo) */
+                radial-gradient(circle at 50% 90%, rgba(252, 238, 10, 0.08) 0%, transparent 60%); /* Amarillo (Fondo) */
+            z-index: -2;
+            animation: chaosLights 10s ease-in-out infinite alternate;
+        }
+
+        /* CAPA 2: EL RUIDO/GRANO (Textura de Anime Viejo) */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Animación de las luces para que parezca vivo */
+        @keyframes chaosLights {
+            0% { transform: scale(1); filter: hue-rotate(0deg); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); filter: hue-rotate(10deg); }
         }
 
         /* Glitch Effect */
         .glitch { position: relative; color: #fff; }
         .glitch::before, .glitch::after {
-            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #050505;
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent;
         }
         .glitch::before {
             left: 2px; text-shadow: -1px 0 #ff0055; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 3s infinite linear alternate-reverse;
@@ -46,221 +90,206 @@
             left: -2px; text-shadow: -1px 0 #ccff00; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2s infinite linear alternate-reverse;
         }
         @keyframes glitch-anim {
-            0% { clip: rect(14px, 9999px, 127px, 0); }
-            20% { clip: rect(66px, 9999px, 15px, 0); }
-            40% { clip: rect(108px, 9999px, 86px, 0); }
-            60% { clip: rect(23px, 9999px, 12px, 0); }
-            80% { clip: rect(58px, 9999px, 96px, 0); }
-            100% { clip: rect(48px, 9999px, 31px, 0); }
+            0% { clip: rect(14px, 9999px, 127px, 0); } 20% { clip: rect(66px, 9999px, 15px, 0); }
+            40% { clip: rect(108px, 9999px, 86px, 0); } 60% { clip: rect(23px, 9999px, 12px, 0); }
+            80% { clip: rect(58px, 9999px, 96px, 0); } 100% { clip: rect(48px, 9999px, 31px, 0); }
         }
 
-        /* Skill Bars */
-        .skill-bar { width: 0%; animation: loadBar 1.5s ease-out forwards; }
-        @keyframes loadBar { from { width: 0%; } }
+        /* Barras de Habilidad */
+        .skill-bar { width: 0%; transition: width 1.5s ease-out; }
+        
+        /* Animaciones Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Tech Cards (Estilo Híbrido: Glass + Borde Tech) */
+        /* Tarjetas Interactivas (Glassmorphism + Bordes Rebecca) */
         .tech-card {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tech-card:hover {
-            border-color: #ccff00;
-            box-shadow: 0 0 20px rgba(204, 255, 0, 0.15);
-            transform: translateY(-5px);
-            background: rgba(20, 20, 20, 0.8);
+            /* Borde alterna entre verde y rosa */
+            border-color: #ccff00; 
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(20, 20, 20, 0.9);
+            z-index: 10;
         }
+        /* Variación para que algunas tarjetas brillen rosa al hover */
+        .tech-card.pink-hover:hover {
+            border-color: #ff0055;
+            box-shadow: 0 0 30px rgba(255, 0, 85, 0.2);
+        }
+        
         .software-icon {
             font-weight: 800; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; border-radius: 6px; width: 50px; height: 50px;
+            font-size: 1.5rem; border-radius: 6px; width: 50px; height: 50px; transition: transform 0.3s ease;
         }
+        .group:hover .software-icon { transform: rotate(5deg) scale(1.1); }
 
         /* Footer Animation */
         .cyber-stack { display: grid; place-items: center; height: 100px; }
         .cyber-stack > * { grid-area: 1 / 1; }
         @keyframes smooth-fade-1 { 0%, 35% { opacity: 1; transform: translateY(0px); } 50%, 85% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0px); } }
         @keyframes smooth-fade-2 { 0%, 35% { opacity: 0; transform: translateY(10px); } 50%, 85% { opacity: 1; transform: translateY(0px); } 100% { opacity: 0; transform: translateY(10px); } }
+
+        .pixelated { image-rendering: pixelated; }
     </style>
 </head>
 <body class="font-cyber overflow-x-hidden selection:bg-becca-green selection:text-black">
 
-    <header class="min-h-[80vh] flex flex-col justify-center items-center text-center p-6 relative">
-        <div class="z-10 p-10 border border-becca-green/30 bg-black/60 backdrop-blur-md rounded-lg shadow-[0_0_30px_rgba(204,255,0,0.1)]">
-            <h1 class="text-6xl md:text-9xl font-black uppercase tracking-widest mb-2 glitch" data-text="RICHTER">
+    <header class="min-h-[90vh] flex flex-col justify-center items-center text-center p-6 relative">
+        <div class="reveal active z-10 p-12 border-2 border-becca-green/50 bg-black/70 backdrop-blur-md rounded-none shadow-[10px_10px_0px_rgba(255,0,85,0.8)] hover:translate-x-1 hover:-translate-y-1 transition-transform duration-300">
+            <h1 class="text-6xl md:text-9xl font-black uppercase tracking-widest mb-2 glitch hover:scale-105 transition-transform duration-300 cursor-default" data-text="RICHTER">
                 RICHTER
             </h1>
-            <p class="text-xl md:text-3xl text-gray-200 font-bold tracking-[0.3em] uppercase mt-4">
-                // EDITOR DE VIDEO <span class="text-becca-green mx-2">•</span> ARTISTA VISUAL
+            <p class="text-xl md:text-3xl text-white font-bold tracking-[0.3em] uppercase mt-4">
+                // EDITOR DE VIDEO <span class="text-becca-pink mx-2 text-4xl">•</span> ARTISTA VISUAL
             </p>
         </div>
         
-        <div class="absolute bottom-10 animate-bounce text-gray-500">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <div class="absolute bottom-10 animate-bounce text-becca-green">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </header>
 
-    <section class="max-w-5xl mx-auto p-6 mt-10" id="sobre-mi">
+    <section class="max-w-5xl mx-auto p-6 mt-10 reveal" id="sobre-mi">
         <div class="flex items-center mb-8">
-            <h2 class="text-4xl font-bold text-white uppercase tracking-wider border-l-4 border-becca-green pl-4">
+            <h2 class="text-4xl font-bold text-white uppercase tracking-wider border-l-8 border-becca-pink pl-4 shadow-[0_0_20px_rgba(255,0,85,0.3)]">
                 SOBRE MÍ
             </h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center tech-card p-8 rounded-xl relative border-gray-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center tech-card p-8 rounded-xl relative">
             <div>
                 <p class="text-xl leading-relaxed mb-6 text-gray-300">
-                    <strong class="text-becca-green font-bold">Hola, soy Richter.</strong> Me especializo en transformar grabaciones crudas en historias visuales de alto impacto con un estilo único.
+                    <strong class="text-becca-green font-bold">Hola, soy Richter.</strong> Me especializo en transformar grabaciones crudas en historias visuales de alto impacto.
                 </p>
                 <p class="text-lg leading-relaxed text-gray-400 mb-8">
-                    Mezclo narrativa rápida con estética visual fuerte, ideal para <span class="text-white font-bold">Gaming, YouTube y Redes Sociales</span>.
+                    Mezclo narrativa rápida con estética visual fuerte, ideal para <span class="text-white font-bold bg-becca-pink/20 px-2">Gaming, YouTube y Redes Sociales</span>.
                 </p>
                 
-                <div class="space-y-5 font-mono text-sm">
+                <div class="space-y-5 font-mono text-sm skill-container">
                     <div>
-                        <div class="flex justify-between mb-1 text-gray-400"><span>PREMIERE PRO</span> <span class="text-becca-pink">95%</span></div>
-                        <div class="h-1 bg-gray-800 w-full rounded-full"><div class="h-full bg-becca-pink rounded-full skill-bar" style="width: 95%"></div></div>
+                        <div class="flex justify-between mb-1 text-gray-400"><span>PREMIERE PRO</span> <span class="text-becca-pink font-bold">95%</span></div>
+                        <div class="h-2 bg-gray-800 w-full"><div class="h-full bg-becca-pink skill-bar shadow-[0_0_10px_#ff0055]" style="width: 0%" data-width="95%"></div></div>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-1 text-gray-400"><span>PHOTOSHOP</span> <span class="text-becca-green">90%</span></div>
-                        <div class="h-1 bg-gray-800 w-full rounded-full"><div class="h-full bg-becca-green rounded-full skill-bar" style="width: 90%"></div></div>
+                        <div class="flex justify-between mb-1 text-gray-400"><span>PHOTOSHOP</span> <span class="text-becca-green font-bold">90%</span></div>
+                        <div class="h-2 bg-gray-800 w-full"><div class="h-full bg-becca-green skill-bar shadow-[0_0_10px_#ccff00]" style="width: 0%" data-width="90%"></div></div>
                     </div>
                     <div>
-                        <div class="flex justify-between mb-1 text-gray-400"><span>AFTER EFFECTS</span> <span class="text-white">75%</span></div>
-                        <div class="h-1 bg-gray-800 w-full rounded-full"><div class="h-full bg-white rounded-full skill-bar" style="width: 75%"></div></div>
+                        <div class="flex justify-between mb-1 text-gray-400"><span>AFTER EFFECTS</span> <span class="text-white font-bold">75%</span></div>
+                        <div class="h-2 bg-gray-800 w-full"><div class="h-full bg-white skill-bar shadow-[0_0_10px_#fff]" style="width: 0%" data-width="75%"></div></div>
                     </div>
                 </div>
             </div>
 
-            <div class="relative h-80 w-full rounded-xl overflow-hidden border border-white/10 group">
-                <img src="https://via.placeholder.com/400x400/111/ff0055?text=AVATAR" alt="Foto de Perfil" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700">
+            <div class="relative h-80 w-full rounded-none border-2 border-becca-green overflow-hidden group animate-float shadow-[10px_10px_0px_rgba(204,255,0,0.3)]">
+                <img src="https://via.placeholder.com/400x400/111/ff0055?text=TU+FOTO" alt="Foto de Perfil" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700 transform group-hover:scale-110">
+                <div class="absolute inset-0 bg-becca-pink/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 mix-blend-overlay"></div>
             </div>
         </div>
     </section>
 
-    <section class="max-w-6xl mx-auto p-6 mt-20">
-        <h3 class="text-center text-gray-500 text-sm font-bold tracking-[0.3em] uppercase mb-10">Software & Tools</h3>
+    <section class="max-w-6xl mx-auto p-6 mt-20 reveal">
+        <div class="flex items-center justify-between mb-10 border-b-2 border-gray-800 pb-4">
+            <h2 class="text-3xl font-bold text-white uppercase tracking-wider">
+                SERVICIOS <span class="text-becca-yellow text-lg align-top">//</span> CAPABILITIES
+            </h2>
+        </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="tech-card pink-hover p-8 rounded-xl relative group overflow-hidden cursor-default">
+                <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity duration-500 group-hover:rotate-12 transform"><svg class="w-12 h-12 text-becca-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-becca-green transition-colors">NARRATIVA VISUAL</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Edición centrada en la retención. Ritmo perfecto y storytelling para mantener a la audiencia.</p>
+            </div>
+            <div class="tech-card p-8 rounded-xl relative group overflow-hidden cursor-default">
+                <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity duration-500 group-hover:rotate-12 transform"><svg class="w-12 h-12 text-becca-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-becca-pink transition-colors">MOTION GRAPHICS</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Subtítulos animados, transiciones y efectos visuales (VFX) que dan identidad a tu marca.</p>
+            </div>
+            <div class="tech-card pink-hover p-8 rounded-xl relative group overflow-hidden cursor-default">
+                <div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-100 transition-opacity duration-500 group-hover:rotate-12 transform"><svg class="w-12 h-12 text-becca-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg></div>
+                <h3 class="text-xl font-bold text-white mb-2 group-hover:text-becca-yellow transition-colors">DISEÑO SONORO</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">Mezcla profesional y SFX inmersivos. El audio es el 50% de la experiencia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto p-6 mt-20 reveal">
+        <h3 class="text-center text-gray-500 text-sm font-bold tracking-[0.3em] uppercase mb-10">Software & Tools</h3>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group">
-                <div class="software-icon bg-[#00005b] text-[#9999ff]">Pr</div>
+            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="software-icon bg-[#00005b] text-[#9999ff] border border-[#9999ff] group-hover:border-becca-green">Pr</div>
                 <h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">PREMIERE</h4>
             </div>
-            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group">
-                <div class="software-icon bg-[#00005b] text-[#d299ff]">Ae</div>
+            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="software-icon bg-[#00005b] text-[#d299ff] border border-[#d299ff] group-hover:border-becca-pink">Ae</div>
                 <h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">AFTER EFFECTS</h4>
             </div>
-            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group">
-                <div class="software-icon bg-[#001e36] text-[#31a8ff]">Ps</div>
+            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="software-icon bg-[#001e36] text-[#31a8ff] border border-[#31a8ff] group-hover:border-becca-yellow">Ps</div>
                 <h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">PHOTOSHOP</h4>
             </div>
-            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group">
-                <div class="software-icon bg-black text-white border border-gray-700">Cc</div>
+            <div class="tech-card p-6 rounded-xl flex flex-col items-center gap-3 group cursor-pointer">
+                <div class="software-icon bg-black text-white border border-gray-700 group-hover:border-white">Cc</div>
                 <h4 class="text-lg font-bold text-gray-300 group-hover:text-white transition-colors">CAPCUT</h4>
             </div>
         </div>
     </section>
 
-    <section class="max-w-6xl mx-auto p-6 mt-20">
+    <section class="max-w-6xl mx-auto p-6 mt-24 reveal">
         <div class="flex items-center mb-6 justify-between">
-            <h2 class="text-2xl font-bold text-white uppercase tracking-wider">Showreel 2026</h2>
-            <div class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-becca-pink rounded-full animate-pulse"></span>
-                <span class="text-xs font-mono text-gray-500">LIVE</span>
-            </div>
+            <h2 class="text-4xl font-bold text-white uppercase tracking-wider">VIDEOS <span class="text-becca-pink text-lg">//</span> SHOWREEL</h2>
+            <div class="flex items-center gap-2"><span class="w-3 h-3 bg-becca-pink rounded-full animate-ping"></span><span class="text-xs font-mono text-gray-500">LIVE</span></div>
         </div>
         
-        <div class="rounded-xl overflow-hidden border border-becca-green/30 shadow-2xl bg-black">
+        <div class="rounded-xl overflow-hidden border-2 border-becca-green shadow-[0_0_40px_rgba(204,255,0,0.3)] bg-black tech-card p-0 mb-16">
             <div class="aspect-video w-full relative group">
                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_VIDEO" title="Showreel" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+
+        <h3 class="text-xl font-bold text-gray-400 uppercase tracking-widest mb-8 border-l-4 border-becca-yellow pl-4">
+            MÁS PROYECTOS
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="tech-card p-2 rounded-xl group"><div class="aspect-video w-full rounded-lg overflow-hidden bg-black mb-3 border border-white/10"><iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_VIDEO_1" frameborder="0" allowfullscreen></iframe></div><div class="px-2 pb-2"><h4 class="text-lg font-bold text-white group-hover:text-becca-pink transition-colors">GAMING HIGHLIGHTS</h4><p class="text-xs text-gray-500 font-mono">EDICIÓN RÁPIDA / VFX</p></div></div>
+            <div class="tech-card p-2 rounded-xl group"><div class="aspect-video w-full rounded-lg overflow-hidden bg-black mb-3 border border-white/10"><iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_VIDEO_2" frameborder="0" allowfullscreen></iframe></div><div class="px-2 pb-2"><h4 class="text-lg font-bold text-white group-hover:text-becca-green transition-colors">VIDEO COMERCIAL</h4><p class="text-xs text-gray-500 font-mono">COLOR GRADING / SOUND</p></div></div>
+            <div class="tech-card p-2 rounded-xl group"><div class="aspect-video w-full rounded-lg overflow-hidden bg-black mb-3 border border-white/10"><iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_VIDEO_3" frameborder="0" allowfullscreen></iframe></div><div class="px-2 pb-2"><h4 class="text-lg font-bold text-white group-hover:text-becca-yellow transition-colors">VIDEO ENSAYO</h4><p class="text-xs text-gray-500 font-mono">NARRATIVA / B-ROLL</p></div></div>
+            <div class="tech-card p-2 rounded-xl group"><div class="aspect-video w-full rounded-lg overflow-hidden bg-black mb-3 border border-white/10"><iframe class="w-full h-full" src="https://www.youtube.com/embed/TU_ID_VIDEO_4" frameborder="0" allowfullscreen></iframe></div><div class="px-2 pb-2"><h4 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">TIKTOK / SHORTS</h4><p class="text-xs text-gray-500 font-mono">FORMATO VERTICAL</p></div></div>
+        </div>
     </section>
 
-    <section class="max-w-6xl mx-auto p-6 mt-16 mb-24">
-        <div class="flex items-center mb-10 border-b border-gray-800 pb-4">
+    <section class="max-w-6xl mx-auto p-6 mt-16 mb-24 reveal">
+        <div class="flex items-center mb-10 border-b-2 border-gray-800 pb-4">
             <h2 class="text-3xl font-bold text-white uppercase tracking-wider">
                 GALERÍA <span class="text-becca-green text-lg align-top">•</span>
             </h2>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="https://via.placeholder.com/600x400" alt="Trabajo 1" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-becca-pink transition-colors">Gaming Edit</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">YT</span>
-                </div>
-            </div>
-
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="https://via.placeholder.com/600x400" alt="Trabajo 2" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-becca-green transition-colors">Vlog Lifestyle</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">VLOG</span>
-                </div>
-            </div>
-
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="rebe.jpg" alt="Trabajo 3" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Video Ensayo</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">DOC</span>
-                </div>
-            </div>
-
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="https://via.placeholder.com/600x400" alt="Trabajo 4" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-yellow-400 transition-colors">Stream Highlight</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">TTV</span>
-                </div>
-            </div>
-
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="https://via.placeholder.com/600x400" alt="Trabajo 5" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-blue-400 transition-colors">Short Form</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">TIKTOK</span>
-                </div>
-            </div>
-
-            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden">
-                <div class="aspect-video rounded-lg overflow-hidden bg-gray-900">
-                    <img src="https://via.placeholder.com/600x400" alt="Trabajo 6" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
-                </div>
-                <div class="mt-3 px-1 flex justify-between items-center">
-                    <span class="text-sm font-bold text-gray-300 group-hover:text-purple-400 transition-colors">Comercial</span>
-                    <span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">ADS</span>
-                </div>
-            </div>
-
+            <div class="tech-card pink-hover p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-becca-pink transition-colors">Gaming Edit</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">YT</span></div></div>
+            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-becca-green transition-colors">Vlog Lifestyle</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">VLOG</span></div></div>
+            <div class="tech-card pink-hover p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">Video Ensayo</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">DOC</span></div></div>
+            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-becca-yellow transition-colors">Stream Highlight</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">TTV</span></div></div>
+            <div class="tech-card pink-hover p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-blue-400 transition-colors">Short Form</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">TIKTOK</span></div></div>
+            <div class="tech-card p-2 rounded-xl group cursor-pointer relative overflow-hidden"><div class="aspect-video rounded-lg overflow-hidden bg-gray-900"><img src="https://via.placeholder.com/600x400" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition duration-700"></div><div class="mt-3 px-1 flex justify-between items-center"><span class="text-sm font-bold text-gray-300 group-hover:text-purple-400 transition-colors">Comercial</span><span class="text-[10px] border border-gray-700 px-2 py-0.5 rounded text-gray-500">ADS</span></div></div>
         </div>
     </section>
 
-    <footer class="border-t-4 border-becca-green bg-gray-900 py-20 text-center relative overflow-hidden">
-        
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-becca-pink via-becca-green to-white"></div>
-        
+    <footer class="reveal border-t-4 border-becca-green bg-gray-900 py-20 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-becca-pink via-becca-green to-becca-yellow"></div>
         <div class="relative z-10 mb-10 cyber-stack">
             <h3 class="text-5xl md:text-8xl font-black text-white uppercase tracking-tighter glitch" data-text="TRABAJEMOS" style="animation: smooth-fade-1 5s ease-in-out infinite;">TRABAJEMOS</h3>
             <h3 class="text-5xl md:text-8xl font-black text-becca-green uppercase tracking-tighter glitch" data-text="CONTÁCTAME" style="animation: smooth-fade-2 5s ease-in-out infinite;">CONTÁCTAME</h3>
         </div>
-
         <div class="flex flex-col md:flex-row justify-center items-center gap-6 px-4 relative z-10 w-full max-w-4xl mx-auto">
-            
-            <a href="https://discord.com/users/TU_ID" target="_blank" class="w-full md:w-auto group relative flex items-center justify-center gap-4 px-10 py-6 bg-black border border-indigo-500 rounded-lg overflow-hidden transition-all hover:border-white hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+            <a href="https://discord.com/users/TU_ID" target="_blank" class="w-full md:w-auto group relative flex items-center justify-center gap-4 px-10 py-6 bg-black border border-indigo-500 rounded-lg overflow-hidden transition-all hover:border-white hover:shadow-[0_0_40px_rgba(99,102,241,0.6)] transform hover:-translate-y-2">
                 <div class="absolute inset-0 bg-indigo-900/20 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
                 <svg class="w-8 h-8 text-indigo-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041-.001-.09-.045-.106a12.787 12.787 0 0 1-1.847-.878.076.076 0 0 1-.007-.123c.373-.28.733-.575 1.082-.885a.074.074 0 0 1 .082-.012c3.578 1.637 7.462 1.637 11.025 0a.074.074 0 0 1 .082.012c.349.31.709.605 1.082.885a.076.076 0 0 1-.007.123 12.746 12.746 0 0 1-1.846.879.076.076 0 0 0-.045.106c.353.7.765 1.364 1.226 1.993a.076.076 0 0 0 .084.028 19.897 19.897 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.032-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419z"/></path></svg>
                 <div class="text-left">
@@ -268,8 +297,7 @@
                     <p class="text-xl font-black text-white tracking-widest">DISCORD</p>
                 </div>
             </a>
-
-            <a href="https://twitter.com/TU_USUARIO" target="_blank" class="w-full md:w-auto group relative flex items-center justify-center gap-4 px-10 py-6 bg-black border border-gray-600 rounded-lg overflow-hidden transition-all hover:border-white hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <a href="https://twitter.com/TU_USUARIO" target="_blank" class="w-full md:w-auto group relative flex items-center justify-center gap-4 px-10 py-6 bg-black border border-gray-600 rounded-lg overflow-hidden transition-all hover:border-white hover:shadow-[0_0_40px_rgba(255,255,255,0.2)] transform hover:-translate-y-2">
                 <div class="absolute inset-0 bg-white/10 translate-y-full transition-transform duration-300 group-hover:translate-y-0"></div>
                 <svg class="w-6 h-6 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 <div class="text-left">
@@ -279,9 +307,9 @@
             </a>
         </div>
         
-        <p class="mt-16 text-gray-600 text-xs font-mono tracking-widest">
-            SYSTEM_STATUS: ONLINE // <span class="text-becca-pink"></span>
-        </p>
+        <div class="mt-16 flex justify-center items-center">
+            <img src="rebeca.gif" alt="Rebecca Cyberpunk Gif" class="h-20 w-auto pixelated animate-float">
+        </div>
     </footer>
 
     <div id="auraModal" class="fixed inset-0 z-[9999] hidden bg-black/95 backdrop-blur-xl flex items-center justify-center p-0 opacity-0 transition-opacity duration-300">
@@ -297,6 +325,7 @@
     </div>
 
     <script>
+        // Zoom Script
         const modal = document.getElementById('auraModal');
         const modalImg = document.getElementById('auraImage');
         const modalContent = document.getElementById('auraContent');
@@ -327,7 +356,25 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === "Escape") closeAura();
         });
+
+        // Scroll Reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const skillBars = document.querySelectorAll('.skill-bar');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if(entry.target.id === 'sobre-mi') {
+                        skillBars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
 </html>
-
