@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <title>PORTAFOLIO | RICHTER</title>
-    <meta name="description" content="Richter: Editor de Videos y Creador de Miniaturas.">
-    <meta property="og:image" content="rebe.jpg">
+    <title>PORTAFOLIO | RICHTER - Visual Architect</title>
+    <meta name="description" content="Editor de Video y Creador de Miniaturas. Estrategia visual para retención y crecimiento.">
+    <meta name="author" content="Richter">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tu-dominio.com/"> 
+    <meta property="og:title" content="RICHTER | PORTAFOLIO">
+    <meta property="og:description" content="Transformo contenido en experiencias visuales. Mira mis proyectos.">
+    <meta property="og:image" content="https://i.imgur.com/fw2ZQFg.png"> 
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RICHTER | PORTAFOLIO">
+    <meta name="twitter:description" content="Transformo contenido en experiencias visuales.">
+    <meta name="twitter:image" content="https://i.imgur.com/fw2ZQFg.png">
+
     <link rel="icon" type="image/gif" href="rebe.gif">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +35,7 @@
                         'becca-pink': '#ff0055', 
                         'becca-green': '#ccff00', 
                         'becca-yellow': '#fcee0a', 
-                        'cyber-black': '#050505',
+                        'cyber-black': '#050505', 
                         'cyber-gray': '#0a0a0a',
                     },
                     fontFamily: {
@@ -36,7 +48,8 @@
                     keyframes: {
                         float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
                         'pulse-glow': { '0%, 100%': { opacity: 0.3 }, '50%': { opacity: 0.6 } }
-                    }
+                    },
+                    screens: { 'xs': '475px' }
                 }
             }
         }
@@ -55,20 +68,21 @@
             position: relative;
             padding-top: 80px; 
         }
+        
         body::after {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle at center, transparent 0%, #030303 95%);
             pointer-events: none; z-index: -1;
         }
 
-        /* Glitch & Textos */
+        /* Glitch Effect */
         .glitch { position: relative; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.6); }
         .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; }
         .glitch::before { left: 2px; text-shadow: -2px 0 #ff0055; clip: rect(24px, 550px, 90px, 0); animation: glitch-anim 3s infinite alternate-reverse; }
         .glitch::after { left: -2px; text-shadow: -2px 0 #ccff00; clip: rect(85px, 550px, 140px, 0); animation: glitch-anim 2s infinite alternate-reverse; }
         @keyframes glitch-anim { 0% { clip: rect(10px, 9999px, 80px, 0); } 100% { clip: rect(50px, 9999px, 20px, 0); } }
 
-        /* Reveal Animation */
+        /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -86,7 +100,7 @@
             transform: translateY(-5px) scale(1.01);
             background: rgba(15, 15, 15, 0.9);
         }
-        .tech-card.pink-hover:hover { border-color: #ff0055; box-shadow: 0 0 25px rgba(255, 0, 85, 0.25), inset 0 0 15px rgba(255, 0, 85, 0.05); }
+        .tech-card.pink-hover:hover { border-color: #ff0055; box-shadow: 0 0 25px rgba(255, 0, 85, 0.25); }
 
         /* Iconos */
         .tech-card svg { transition: all 0.5s ease; will-change: transform, filter; }
@@ -96,7 +110,7 @@
         .tech-card:hover .adobe-bg-ae { fill: #00005b !important; }
         .tech-card:hover .adobe-bg-ps { fill: #001e36 !important; }
 
-        /* Navbar & Textos */
+        /* Navbar & Titles */
         .nav-link { position: relative; transition: color 0.3s; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
         .nav-link:hover { color: #ccff00; text-shadow: 0 0 10px #ccff00; }
         .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #ccff00; transition: width 0.3s; }
@@ -105,7 +119,7 @@
         .section-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: white; display: flex; align-items: center; gap: 1rem; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3); }
         .section-line { height: 3px; flex-grow: 1; background: linear-gradient(90deg, #ccff00, transparent); opacity: 0.8; box-shadow: 0 0 15px #ccff00; }
 
-        /* Textos Animados Contacto */
+        /* Animation Stack Text */
         .cyber-stack { display: grid; place-items: center; height: 80px; position: relative; }
         @media (min-width: 768px) { .cyber-stack { height: 120px; } }
         .cyber-stack > * { grid-area: 1 / 1; transition: all 0.5s ease; }
@@ -116,20 +130,27 @@
 
         .pixelated { image-rendering: pixelated; }
 
-        /* === MODALES (BUG FIX) === */
-        /* Estado Cerrado: Opacidad 0 Y pointer-events-none (ESTO ARREGLA EL BUG) */
-        .modal-closed {
-            opacity: 0;
-            pointer-events: none;
-            visibility: hidden; /* Doble seguridad */
+        /* MENU MOVIL OVERLAY */
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(5, 5, 5, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; items-center; gap: 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        /* Estado Abierto */
-        .modal-open {
-            opacity: 1;
-            pointer-events: auto;
-            visibility: visible;
-        }
-        
+        #mobile-menu.active { transform: translateY(0); }
+        .mobile-link { font-size: 2rem; font-weight: 800; color: white; text-transform: uppercase; letter-spacing: 2px; transition: all 0.3s; }
+        .mobile-link:hover { color: #ccff00; text-shadow: 0 0 20px #ccff00; letter-spacing: 4px; }
+
+        /* Toast */
+        #toast { visibility: hidden; min-width: 250px; background-color: rgba(0, 0, 0, 0.9); color: #fff; text-align: center; border-radius: 4px; padding: 16px; position: fixed; z-index: 10000; left: 50%; bottom: 30px; transform: translateX(-50%); border: 1px solid #ccff00; box-shadow: 0 0 20px rgba(204, 255, 0, 0.3); font-family: 'Space Grotesk', sans-serif; font-weight: bold; opacity: 0; transition: opacity 0.3s, bottom 0.3s; }
+        #toast.show { visibility: visible; opacity: 1; bottom: 50px; }
+
+        /* Modales */
+        .modal-closed { opacity: 0; pointer-events: none; visibility: hidden; }
+        .modal-open { opacity: 1; pointer-events: auto; visibility: visible; }
         .modal-transition { transition: opacity 0.3s ease, visibility 0.3s ease; }
     </style>
 </head>
@@ -140,6 +161,7 @@
             <a href="#inicio" class="flex items-center hover:opacity-80 transition-opacity group">
                  <img src="rebeca.gif" alt="Richter Logo" class="h-10 md:h-12 pixelated group-hover:drop-shadow-[0_0_10px_#ccff00] transition-all">
             </a>
+            
             <div class="hidden md:flex gap-8 text-base font-bold tracking-wide uppercase text-gray-400">
                 <a href="#inicio" class="nav-link text-white">Inicio</a>
                 <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
@@ -148,22 +170,28 @@
                 <a href="#minis" class="nav-link">Miniaturas</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
             </div>
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none">
+
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none z-[10000]">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="absolute top-0 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-becca-green/30 transform -translate-y-full transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-center gap-8 py-10 z-40 shadow-2xl">
-            <a href="#inicio" class="text-2xl text-white font-bold tracking-widest hover:text-becca-green" onclick="toggleMenu()">INICIO</a>
-            <a href="#sobre-mi" class="text-2xl text-gray-300 font-bold tracking-widest hover:text-becca-green" onclick="toggleMenu()">SOBRE MÍ</a>
-            <a href="#habilidades" class="text-2xl text-becca-green font-bold tracking-widest" onclick="toggleMenu()">HABILIDADES</a>
-            <a href="#videos" class="text-2xl text-gray-300 font-bold tracking-widest hover:text-becca-green" onclick="toggleMenu()">VIDEOS</a>
-            <a href="#minis" class="text-2xl text-gray-300 font-bold tracking-widest hover:text-becca-green" onclick="toggleMenu()">MINIATURAS</a>
-            <a href="#contacto" class="text-2xl text-white font-bold tracking-widest border border-white px-6 py-2 rounded-sm" onclick="toggleMenu()">CONTACTO</a>
-        </div>
     </nav>
+
+    <div id="mobile-menu">
+        <button id="close-menu-btn" class="absolute top-6 right-6 text-white p-2 border border-white/20 rounded-full hover:bg-white/10 transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <a href="#inicio" class="mobile-link" onclick="toggleMenu()">INICIO</a>
+        <a href="#sobre-mi" class="mobile-link" onclick="toggleMenu()">SOBRE MÍ</a>
+        <a href="#habilidades" class="mobile-link text-becca-green" onclick="toggleMenu()">HABILIDADES</a>
+        <a href="#videos" class="mobile-link" onclick="toggleMenu()">VIDEOS</a>
+        <a href="#minis" class="mobile-link" onclick="toggleMenu()">MINIATURAS</a>
+        <a href="#contacto" class="mobile-link" onclick="toggleMenu()">CONTACTO</a>
+    </div>
 
     <header id="inicio" class="min-h-[90vh] flex items-center justify-center relative overflow-hidden pt-20">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-becca-green/5 rounded-full blur-[80px] pointer-events-none z-0"></div>
+
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
             <div class="text-left reveal active order-2 md:order-1">
                 <h1 class="text-5xl xs:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4 text-white glitch" data-text="RICHTER">RICHTER</h1>
@@ -178,9 +206,10 @@
                     <a href="#contacto" class="px-8 py-4 border-2 border-white/20 text-white font-bold text-center text-lg tracking-wider hover:border-becca-pink hover:text-becca-pink transition-colors rounded-sm">CONTÁCTAME</a>
                 </div>
             </div>
+            
             <div class="relative flex justify-center reveal active delay-200 order-1 md:order-2" id="hero-image-container" style="perspective: 1000px;">
                 <div id="hero-image" class="relative w-64 h-64 md:w-96 md:h-96 transition-transform duration-75 ease-out shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden border border-becca-green/30 will-change-transform">
-                    <img src="rebe2.gif" alt="Richter Avatar" class="w-full h-full object-cover scale-105" loading="eager">
+                    <img id="hero-gif" src="rebeojos.gif" alt="Richter Avatar" class="w-full h-full object-cover scale-105" loading="eager">
                     <div class="absolute inset-0 bg-gradient-to-tr from-becca-green/10 to-transparent mix-blend-overlay"></div>
                 </div>
             </div>
@@ -240,7 +269,6 @@
     <section id="videos" class="max-w-6xl mx-auto px-6 py-20 md:py-32 reveal border-t border-white/10 relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-becca-green/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
         <div class="section-title mb-16 text-4xl md:text-5xl">Proyectos <div class="section-line"></div></div>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <div class="tech-card p-1 group hover:!border-becca-pink hover:shadow-[0_0_40px_rgba(255,0,85,0.4)] transition-all duration-500 cursor-pointer">
                 <div class="aspect-video bg-gray-900 overflow-hidden rounded-sm relative">
@@ -271,7 +299,6 @@
 
     <section id="minis" class="max-w-6xl mx-auto px-6 py-20 md:py-32 reveal border-t border-white/10 relative">
         <div class="section-title mb-16 text-4xl md:text-5xl">Miniaturas <div class="section-line"></div></div>
-        
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <div class="tech-card p-1 group cursor-pointer hover:!border-becca-pink hover:shadow-[0_0_30px_rgba(255,0,85,0.3)] transition-all duration-300">
                 <div class="aspect-video overflow-hidden bg-gray-900 relative rounded-sm">
@@ -309,20 +336,18 @@
         </div>
 
         <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 px-4 relative z-10 w-full max-w-6xl mx-auto pt-24 md:pt-32">
-            <div onclick="openContactModal('DISCORD', 'richter1727', 'indigo')" class="w-full md:w-auto group relative flex flex-col items-center justify-center gap-4 px-12 py-8 bg-black/80 border border-indigo-500/50 rounded-sm overflow-hidden transition-all hover:border-indigo-400 hover:shadow-[0_0_50px_rgba(99,102,241,0.6)] transform hover:-translate-y-3 hover:scale-105 backdrop-blur-md cursor-pointer">
+            <div onclick="openContactModal('DISCORD', 'richter1727', 'text-indigo-400')" class="w-full md:w-auto group relative flex flex-col items-center justify-center gap-4 px-12 py-8 bg-black/80 border border-indigo-500/50 rounded-sm overflow-hidden transition-all hover:border-indigo-400 hover:shadow-[0_0_50px_rgba(99,102,241,0.6)] transform hover:-translate-y-3 hover:scale-105 backdrop-blur-md cursor-pointer">
                 <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600/20 via-transparent to-transparent translate-y-full transition-transform duration-500 group-hover:translate-y-0"></div>
-                <svg class="w-10 h-10 md:w-14 md:h-14 text-indigo-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(99,102,241,0.5));"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041-.001-.09-.045-.106a12.787 12.787 0 0 1-1.847-.878.076.076 0 0 1-.007-.123c.373-.28.733-.575 1.082-.885a.074.074 0 0 1 .082-.012c3.578 1.637 7.462 1.637 11.025 0a.074.074 0 0 1 .082.012c.349.31.709.605 1.082.885a.076.076 0 0 1-.007.123 12.746 12.746 0 0 1-1.846.879.076.076 0 0 0-.045.106c.353.7.765 1.364 1.226 1.993a.076.076 0 0 0 .084.028 19.897 19.897 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.032-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419z"/></path></svg>
+                <svg class="w-10 h-10 md:w-14 md:h-14 text-indigo-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041-.001-.09-.045-.106a12.787 12.787 0 0 1-1.847-.878.076.076 0 0 1-.007-.123c.373-.28.733-.575 1.082-.885a.074.074 0 0 1 .082-.012c3.578 1.637 7.462 1.637 11.025 0a.074.074 0 0 1 .082.012c.349.31.709.605 1.082.885a.076.076 0 0 1-.007.123 12.746 12.746 0 0 1-1.846.879.076.076 0 0 0-.045.106c.353.7.765 1.364 1.226 1.993a.076.076 0 0 0 .084.028 19.897 19.897 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.032-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.085 2.176 2.419 0 1.334-.966 2.419-2.176 2.419z"/></path></svg>
                 <div class="text-center relative z-10">
                     <p class="text-xs md:text-sm text-indigo-300 font-bold tracking-wider mb-1">CONTACTAR EN</p>
                     <p class="text-2xl md:text-3xl font-black text-white tracking-widest" style="text-shadow: 0 0 20px rgba(99,102,241,0.6);">DISCORD</p>
                 </div>
             </div>
 
-            <div onclick="openContactModal('GMAIL', 'ralgrich@gmail.com', 'red')" class="w-full md:w-auto group relative flex flex-col items-center justify-center gap-4 px-12 py-8 bg-black/80 border border-red-500/50 rounded-sm overflow-hidden transition-all hover:border-red-400 hover:shadow-[0_0_50px_rgba(239,68,68,0.6)] transform hover:-translate-y-3 hover:scale-105 backdrop-blur-md cursor-pointer">
+            <div onclick="openContactModal('GMAIL', 'ralgrich@gmail.com', 'text-red-400')" class="w-full md:w-auto group relative flex flex-col items-center justify-center gap-4 px-12 py-8 bg-black/80 border border-red-500/50 rounded-sm overflow-hidden transition-all hover:border-red-400 hover:shadow-[0_0_50px_rgba(239,68,68,0.6)] transform hover:-translate-y-3 hover:scale-105 backdrop-blur-md cursor-pointer">
                 <div class="absolute inset-0 bg-gradient-to-tr from-red-600/20 via-transparent to-transparent translate-y-full transition-transform duration-500 group-hover:translate-y-0"></div>
-                <svg class="w-10 h-10 md:w-14 md:h-14 text-red-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(239,68,68,0.5));">
-                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-                </svg>
+                <svg class="w-10 h-10 md:w-14 md:h-14 text-red-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
                 <div class="text-center relative z-10">
                     <p class="text-xs md:text-sm text-red-300 font-bold tracking-wider mb-1">ENVIAR CORREO</p>
                     <p class="text-2xl md:text-3xl font-black text-white tracking-widest" style="text-shadow: 0 0 20px rgba(239,68,68,0.6);">GMAIL</p>
@@ -331,7 +356,7 @@
 
             <a href="https://twitter.com/Richter17x" target="_blank" class="w-full md:w-auto group relative flex flex-col items-center justify-center gap-4 px-12 py-8 bg-black/80 border border-gray-600/50 rounded-sm overflow-hidden transition-all hover:border-white hover:shadow-[0_0_50px_rgba(255,255,255,0.5)] transform hover:-translate-y-3 hover:scale-105 backdrop-blur-md">
                 <div class="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent translate-y-full transition-transform duration-500 group-hover:translate-y-0"></div>
-                <svg class="w-10 h-10 md:w-14 md:h-14 text-gray-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <svg class="w-10 h-10 md:w-14 md:h-14 text-gray-400 group-hover:text-white transition-colors relative z-10" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 <div class="text-center relative z-10">
                     <p class="text-xs md:text-sm text-gray-400 font-bold tracking-wider mb-1">SÍGUEME EN</p>
                     <p class="text-2xl md:text-3xl font-black text-white tracking-widest" style="text-shadow: 0 0 20px rgba(255,255,255,0.4);">X / TWITTER</p>
@@ -340,12 +365,12 @@
         </div>
     </section>
 
+    <div id="toast">¡COPIADO AL PORTAPAPELES!</div>
+
     <footer class="bg-black py-12 text-center border-t border-white/5 relative">
         <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-8 relative z-10">
             <img src="rebeca.gif" alt="Signature" class="h-16 pixelated opacity-70 hover:opacity-100 transition-opacity">
-            <p class="text-xs md:text-sm text-gray-500 font-mono tracking-[0.3em] uppercase">
-                © 2026 DESARROLLADO POR RICHTER. TODOS LOS DERECHOS RESERVADOS.
-            </p>
+            <p class="text-xs md:text-sm text-gray-500 font-mono tracking-[0.3em] uppercase">© 2026 RICHTER VISUALS. SYSTEM ONLINE.</p>
         </div>
     </footer>
 
@@ -357,34 +382,73 @@
     </div>
 
     <div id="contactModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md modal-closed modal-transition">
-        <div class="bg-black border border-white/20 p-8 rounded-sm max-w-sm w-full text-center relative shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+        <div class="bg-black border border-white/20 p-8 rounded-sm max-w-sm w-full text-center relative shadow-[0_0_50px_rgba(0,0,0,0.8)] border-t-4 transform scale-95 transition-transform duration-300" id="contactCard">
             <button onclick="closeContactModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-            <h3 id="contactTitle" class="text-3xl font-bold text-white mb-2 tracking-widest">DISCORD</h3>
-            <p id="contactValue" class="text-gray-400 font-mono mb-8 text-xl border-b border-gray-800 pb-4">richter1727</p>
-            <button id="copyBtn" class="w-full py-4 bg-white text-black font-bold tracking-widest hover:bg-becca-green transition-colors">
-                COPIAR AL PORTAPAPELES
-            </button>
+            <h3 id="contactTitle" class="text-3xl font-bold text-white mb-2 tracking-widest mt-4">PLATAFORMA</h3>
+            <p id="contactValue" class="text-gray-400 font-mono mb-8 text-xl border-b border-gray-800 pb-4 break-all">Usuario</p>
+            <button id="copyBtn" class="w-full py-4 bg-white text-black font-bold tracking-widest hover:bg-becca-green transition-colors uppercase">Copiar al Portapapeles</button>
         </div>
     </div>
 
     <script>
-        // MOBILE MENU
+        // MENU MOVIL
         const menuBtn = document.getElementById('menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        function toggleMenu() {
-            if (mobileMenu.classList.contains('-translate-y-full')) {
-                mobileMenu.classList.remove('-translate-y-full');
-            } else {
-                mobileMenu.classList.add('-translate-y-full');
-            }
-        }
-        menuBtn.addEventListener('click', toggleMenu);
-
-        // --- GESTIÓN DE MODALES (FIX DEFINITIVO) ---
         
-        // 1. MODAL DE IMÁGENES
+        function toggleMenu() {
+            mobileMenu.classList.toggle('-translate-y-full');
+            mobileMenu.classList.toggle('active');
+        }
+        
+        menuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // --- CONTACT MODAL LOGIC ---
+        const contactModal = document.getElementById('contactModal');
+        const contactCard = document.getElementById('contactCard');
+        const contactTitle = document.getElementById('contactTitle');
+        const contactValue = document.getElementById('contactValue');
+        const copyBtn = document.getElementById('copyBtn');
+        let currentTextToCopy = "";
+
+        function openContactModal(title, value, colorClass) {
+            contactModal.classList.remove('modal-closed');
+            contactModal.classList.add('modal-open');
+            contactCard.classList.remove('scale-95'); contactCard.classList.add('scale-100');
+            
+            contactTitle.innerText = title;
+            contactTitle.className = `text-3xl font-bold mb-2 tracking-widest mt-4 ${colorClass}`;
+            contactValue.innerText = value;
+            currentTextToCopy = value;
+            
+            // Reset Button
+            copyBtn.innerText = "COPIAR AL PORTAPAPELES";
+            copyBtn.className = "w-full py-4 bg-white text-black font-bold tracking-widest hover:bg-becca-green transition-colors uppercase";
+            contactCard.style.borderColor = (title === 'GMAIL') ? '#ef4444' : '#818cf8';
+        }
+
+        function closeContactModal() {
+            contactCard.classList.remove('scale-100'); contactCard.classList.add('scale-95');
+            contactModal.classList.remove('modal-open');
+            contactModal.classList.add('modal-closed');
+        }
+
+        copyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(currentTextToCopy).then(() => {
+                copyBtn.innerText = "¡COPIADO!";
+                copyBtn.className = "w-full py-4 bg-becca-green text-black font-bold tracking-widest transition-colors uppercase";
+                
+                const toast = document.getElementById("toast");
+                toast.innerText = "¡COPIADO AL PORTAPAPELES!";
+                toast.className = "show";
+                setTimeout(() => { toast.className = toast.className.replace("show", ""); closeContactModal(); }, 1500);
+            });
+        });
+
+        // --- IMAGE MODAL LOGIC (FIXED) ---
         const imageModal = document.getElementById('imageModal');
         const imageModalContent = document.getElementById('imageModalContent');
         const thumbnails = document.querySelectorAll('#minis .tech-card img');
@@ -394,54 +458,17 @@
                 imageModal.classList.remove('modal-closed');
                 imageModal.classList.add('modal-open');
                 imageModalContent.src = img.src;
-                // Pequeña animación de entrada
                 setTimeout(() => { imageModalContent.classList.remove('scale-95'); imageModalContent.classList.add('scale-100'); }, 10);
             });
         });
 
         function closeImageModal() {
-            imageModalContent.classList.remove('scale-100'); 
-            imageModalContent.classList.add('scale-95');
+            imageModalContent.classList.remove('scale-100'); imageModalContent.classList.add('scale-95');
             imageModal.classList.remove('modal-open');
-            imageModal.classList.add('modal-closed'); // Aplica pointer-events: none
+            imageModal.classList.add('modal-closed');
         }
 
-        // 2. MODAL DE CONTACTO
-        const contactModal = document.getElementById('contactModal');
-        const contactTitle = document.getElementById('contactTitle');
-        const contactValue = document.getElementById('contactValue');
-        const copyBtn = document.getElementById('copyBtn');
-        let currentTextToCopy = "";
-
-        function openContactModal(title, value, colorClass) {
-            contactModal.classList.remove('modal-closed');
-            contactModal.classList.add('modal-open');
-            contactTitle.innerText = title;
-            contactValue.innerText = value;
-            currentTextToCopy = value;
-            
-            // Resetear botón
-            copyBtn.innerText = "COPIAR AL PORTAPAPELES";
-            copyBtn.classList.remove('bg-becca-green', 'bg-red-500', 'bg-indigo-500');
-            copyBtn.classList.add('bg-white');
-        }
-
-        function closeContactModal() {
-            contactModal.classList.remove('modal-open');
-            contactModal.classList.add('modal-closed');
-        }
-
-        // Acción de Copiar dentro del Modal
-        copyBtn.addEventListener('click', function() {
-            navigator.clipboard.writeText(currentTextToCopy).then(() => {
-                copyBtn.innerText = "¡COPIADO!";
-                copyBtn.classList.remove('bg-white');
-                copyBtn.classList.add('bg-becca-green');
-                setTimeout(() => { closeContactModal(); }, 1000);
-            });
-        });
-
-        // Cerrar al dar click fuera (Para ambos modales)
+        // Global Close (Escape & Click Outside)
         window.addEventListener('click', (e) => {
             if (e.target === imageModal) closeImageModal();
             if (e.target === contactModal) closeContactModal();
@@ -450,12 +477,22 @@
             if (e.key === "Escape") { closeImageModal(); closeContactModal(); }
         });
 
-        // --- EFECTOS VISUALES ---
+        // --- EFECTOS VISUALES & GIF SWAP & COOLDOWN (NUEVO) ---
         const heroContainer = document.getElementById('hero-image-container');
         const heroImage = document.getElementById('hero-image');
-        let isMoving = false;
+        const heroGif = document.getElementById('hero-gif');
+        
+        let isMoving = false; // Para el 3D
+        let interactionLock = false; // CANDADO DE COOLDOWN
+        let isUserHovering = false; // Rastreo real del mouse
+
+        // Preload hover gif
+        const hoverGif = new Image();
+        hoverGif.src = 'rebebrazos.gif';
 
         if(heroContainer && heroImage && window.matchMedia("(min-width: 768px)").matches) {
+            
+            // 3D Move (Sin cambios, solo optimizado)
             heroContainer.addEventListener('mousemove', (e) => {
                 if(!isMoving) {
                     window.requestAnimationFrame(() => {
@@ -472,8 +509,37 @@
                     isMoving = true;
                 }
             });
+
+            // LOGICA DEL GIF CON COOLDOWN
+            heroContainer.addEventListener('mouseenter', () => {
+                isUserHovering = true;
+                
+                // Si NO está bloqueado, cambiamos el gif y ponemos el candado
+                if (!interactionLock) {
+                    heroGif.src = 'rebebrazos.gif';
+                    interactionLock = true;
+
+                    // El candado dura 5 segundos (tiempo estimado de la animación)
+                    setTimeout(() => {
+                        interactionLock = false;
+                        // Si el usuario ya se fue mientras estaba el candado, reseteamos ahora
+                        if (!isUserHovering) {
+                            heroGif.src = 'rebeojos.gif';
+                            heroImage.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translate(0, 0)';
+                        }
+                    }, 5000); // 5000ms = 5 segundos de cooldown
+                }
+            });
+
             heroContainer.addEventListener('mouseleave', () => {
-                heroImage.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translate(0, 0)';
+                isUserHovering = false;
+                
+                // Solo reseteamos INMEDIATAMENTE si NO hay candado activo
+                if (!interactionLock) {
+                    heroGif.src = 'rebeojos.gif';
+                    heroImage.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translate(0, 0)';
+                }
+                // Si hay candado, el setTimeout de arriba se encargará de resetear cuando acabe el tiempo
             });
         }
 
