@@ -91,14 +91,23 @@
         /* Navbar Links */
         .nav-link { position: relative; transition: color 0.3s; cursor: pointer; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
         .nav-link:hover { color: #ccff00; text-shadow: 0 0 10px #ccff00; }
-        
-        /* Línea base normal */
         .nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background-color: #ccff00; transition: width 0.3s; }
         .nav-link:hover::after { width: 100%; }
-
-        /* CLASE ACTIVA (SCROLL SPY) */
         .nav-link.active-section { color: #ccff00; text-shadow: 0 0 15px rgba(204, 255, 0, 0.6); }
         .nav-link.active-section::after { width: 100%; box-shadow: 0 0 10px #ccff00; }
+
+        /* DECORACIÓN TÍTULOS (RESTAURADO) */
+        .section-title { 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: white; display: flex; align-items: center; gap: 1rem; 
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        .section-line { 
+            height: 3px; flex-grow: 1; background: linear-gradient(90deg, #ccff00, transparent); opacity: 0.8; box-shadow: 0 0 15px #ccff00; 
+        }
+        /* Línea Rosa Alternativa */
+        .section-line-pink {
+            height: 3px; flex-grow: 1; background: linear-gradient(90deg, #ff0055, transparent); opacity: 0.8; box-shadow: 0 0 15px #ff0055;
+        }
 
         /* Stack Text */
         .cyber-stack { display: grid; place-items: center; height: 80px; position: relative; }
@@ -188,20 +197,35 @@
     </header>
 
     <section id="sobre-mi" class="section-spy max-w-5xl mx-auto px-6 py-20 md:py-32 reveal">
-        <div class="section-title mb-12 text-4xl md:text-5xl">Sobre Mí <div class="section-line"></div></div>
+        <div class="section-title mb-12 text-4xl md:text-5xl">
+            Sobre Mí <div class="section-line"></div>
+        </div>
+        
         <div class="tech-card p-8 md:p-12 rounded-sm mb-16 border-l-4 border-becca-pink bg-black/70 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-            <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8">HOLA, SOY <span class="text-becca-green" style="text-shadow: 0 0 20px rgba(204,255,0,0.4);">RICHARD LÓPEZ.</span></h3>
+            <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8">
+                HOLA, SOY <span class="text-becca-green" style="text-shadow: 0 0 20px rgba(204,255,0,0.4);">RICHARD LÓPEZ.</span>
+            </h3>
+            
             <div class="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed font-normal">
-                <p>Pero puedes decirme <strong>Richter</strong>. Tengo <strong class="text-white bg-white/10 px-2 border border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.1)]">+2 años de experiencia</strong> editando videos y diseñando miniaturas.</p>
-                <p>Para mí, editar no es solo unir clips; es darle ritmo y estilo a tus ideas para que se vean increíbles. Me gusta cuidar mucho los detalles, desde los colores hasta el sonido, para que tu video enganche de principio a fin.</p>
-                <p>Me gusta trabajar de forma sencilla y directa: escucho lo que quieres, te propongo ideas y siempre cumplo con los tiempos. Si buscas a alguien de confianza para mejorar la calidad de tu canal, estoy listo para ayudarte.</p>
+                <p>
+                    Pero puedes decirme <strong>Richter</strong>. Tengo <strong class="text-white bg-white/10 px-2 border border-white/10 shadow-[0_0_10px_rgba(255,255,255,0.1)]">+2 años de experiencia</strong> editando videos y diseñando miniaturas.
+                </p>
+                <p>
+                    Para mí, editar no es solo unir clips; es darle ritmo y estilo a tus ideas para que se vean increíbles. Me gusta cuidar mucho los detalles, desde los colores hasta el sonido, para que tu video enganche de principio a fin.
+                </p>
+                <p>
+                    Me gusta trabajar de forma sencilla y directa: escucho lo que quieres, te propongo ideas y siempre cumplo con los tiempos. Si buscas a alguien de confianza para mejorar la calidad de tu canal, estoy listo para ayudarte.
+                </p>
             </div>
         </div>
     </section>
 
     <section id="habilidades" class="section-spy max-w-6xl mx-auto px-6 py-20 md:py-32 reveal border-t border-white/10 relative overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-becca-green/5 blur-[100px] pointer-events-none"></div>
-        <div class="section-title mb-16 text-4xl md:text-5xl">Habilidades <div class="section-line" style="background: linear-gradient(90deg, #ff0055, transparent); box-shadow: 0 0 15px #ff0055;"></div></div>
+        
+        <div class="section-title mb-16 text-4xl md:text-5xl">
+            Habilidades <div class="section-line-pink"></div>
+        </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             <div class="tech-card p-10 flex flex-col items-center justify-center gap-6 group hover:border-[#9999ff] transition-all duration-300 relative cursor-default" style="perspective: 1000px;">
@@ -221,7 +245,11 @@
 
     <section id="videos" class="section-spy max-w-6xl mx-auto px-6 py-20 md:py-32 reveal border-t border-white/10 relative">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] bg-becca-green/5 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-        <div class="section-title mb-16 text-4xl md:text-5xl">Proyectos <div class="section-line"></div></div>
+        
+        <div class="section-title mb-16 text-4xl md:text-5xl">
+            Proyectos <div class="section-line"></div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <div class="tech-card p-1 group hover:!border-becca-pink hover:shadow-[0_0_40px_rgba(255,0,85,0.4)] transition-all duration-500 cursor-pointer">
                 <div class="aspect-video bg-gray-900 overflow-hidden rounded-sm relative">
@@ -251,7 +279,10 @@
     </section>
 
     <section id="minis" class="section-spy max-w-6xl mx-auto px-6 py-20 md:py-32 reveal border-t border-white/10 relative">
-        <div class="section-title mb-16 text-4xl md:text-5xl">Miniaturas <div class="section-line"></div></div>
+        <div class="section-title mb-16 text-4xl md:text-5xl">
+            Miniaturas <div class="section-line-pink"></div>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             <div class="tech-card p-1 group cursor-pointer hover:!border-becca-pink hover:shadow-[0_0_30px_rgba(255,0,85,0.3)] transition-all duration-300">
                 <div class="aspect-video overflow-hidden bg-gray-900 relative rounded-sm">
