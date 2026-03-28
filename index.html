@@ -56,6 +56,9 @@
     <style>
         body {
             background-color: #030303;
+            background-image: linear-gradient(rgba(204, 255, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 255, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-attachment: fixed;
             color: #e2e8f0;
             overflow-x: hidden;
             position: relative;
@@ -396,6 +399,7 @@
         .modal-transition {
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+
     </style>
 </head>
 
@@ -1112,6 +1116,7 @@
             });
         }, { threshold: 0.1 });
         revealElements.forEach(el => revealObserver.observe(el));
+
     </script>
 </body>
 
